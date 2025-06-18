@@ -12,7 +12,22 @@ const App = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [connectionError, setConnectionError] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  const setThemeInStorage = (theme) => {
+    localStorage.setItem("theme", theme);
+  };
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+    setThemeInStorage(isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
+
   useEffect(() => {
     return () => {
       if (isConnected) {
@@ -20,14 +35,6 @@ const App = () => {
       }
     };
   }, [isConnected]);
-  
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-  }, [isDarkMode]);
 
   const handleLogin = async (username) => {
     setUsername(username);
@@ -75,7 +82,7 @@ const App = () => {
           {!isDarkMode ? <FaToggleOff size={50} /> : <FaToggleOn size={50} />}
         </button>
       </div>
-      <div className={`min-h-screen flex flex-col ${isDarkMode ? "dark bg-gray-950" : "bg-gray-50"}`}>
+      <div className={`min-h-screen flex flex-col ${isDarkMode ? "dark bg-gray-950" : "bg-gray-100"}`}>
         {connectionError && (
           <div className="fixed top-0 left-0 right-0 bg-red-500 text-white p-4 text-center">
             {connectionError}
@@ -87,10 +94,10 @@ const App = () => {
         ) : (
           <div className="flex flex-col md:flex-row flex-1 p-4 gap-4 max-w-6xl mx-auto w-full">
             <div className="flex flex-col md:w-3/4 gap-4">
-              <ChatWindow messages={messages} username={username} />
-              <MessageInput onSend={handleSendMessage} />
+              <ChatWindow isDarkMode={isDarkMode} messages={messages} username={username} />
+              <MessageInput isDarkMode={isDarkMode} onSend={handleSendMessage} />
             </div>
-            <OnlineUsers users={onlineUsers} />
+            <OnlineUsers isDarkMode={isDarkMode} users={onlineUsers} />
           </div>
         )}
       </div>

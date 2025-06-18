@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MessageInput = ({ onSend }) => {
+const MessageInput = ({ isDarkMode, onSend }) => {
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
@@ -12,24 +12,32 @@ const MessageInput = ({ onSend }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
+    <form onSubmit={handleSubmit} className="mt-2 flex gap-2">
       <input
         type="text"
-        className="flex-1 px-4 py-2 border border-gray-300 rounded-full outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+        className={` ${
+          isDarkMode
+            ? "border-gray-900 bg-gray-800 shadow-2xl shadow-black text-white"
+            : "border-gray-200 shadow-xl"
+        } flex-1 px-4 py-2 border rounded-full outline-none focus:ring-2 focus:ring-accent focus:border-transparent`}
         placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
       <button
         type="submit"
-        className="bg-gray-700 hover:bg-gray-800 cursor-pointer text-white rounded-full w-12 h-12 flex items-center justify-center transition duration-300 transform hover:scale-110"
+        className={` ${
+          isDarkMode
+            ? "bg-gray-200 shadow-2xl shadow-black hover:bg-gray-50"
+            : "bg-gray-700 shadow-xl hover:bg-gray-800"
+        }  cursor-pointer text-white rounded-full w-12 h-12 flex items-center justify-center transition duration-300 transform hover:scale-110`}
         aria-label="Send message"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
           viewBox="0 0 20 20"
-          fill="currentColor"
+          fill={isDarkMode ? "black" : "currentColor"}
         >
           <path
             fillRule="evenodd"

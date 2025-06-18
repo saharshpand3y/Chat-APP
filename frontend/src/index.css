@@ -12,3 +12,16 @@ body {
   @apply bg-gray-50;
 }
 
+@utility text-gradient-light {
+  @apply bg-linear-to-r from-[#424242] to-[#AB8BFF] bg-clip-text text-transparent;
+}
+@utility text-gradient {
+  @apply bg-linear-to-r from-[#f5f5f5] to-[#AB8BFF] bg-clip-text text-transparent;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

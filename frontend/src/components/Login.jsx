@@ -16,7 +16,7 @@ const Login = ({ isDarkMode, onLogin }) => {
         className={`${
           isDarkMode
             ? "dark bg-gray-800 shadow-2xl shadow-black"
-            : "bg-gray-50 shadow-xl"
+            : "bg-white shadow-xl"
         } p-8 rounded-xl w-full max-w-md`}
       >
         <h1
@@ -24,7 +24,7 @@ const Login = ({ isDarkMode, onLogin }) => {
             isDarkMode ? "text-gray-100" : "text-gray-800"
           } text-3xl font-bold text-center mb-6 `}
         >
-          Welcome to Chat
+          Welcome to <span className={`${isDarkMode ? 'text-gradient' : 'text-gradient-light'}`}>Chat</span>
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -40,7 +40,9 @@ const Login = ({ isDarkMode, onLogin }) => {
               type="text"
               id="username"
               className={` ${
-                isDarkMode ? "border-gray-600 text-white" : "border-gray-300"
+                isDarkMode
+                  ? "border-gray-600 bg-gray-700 text-white"
+                  : "border-gray-300 bg-gray-200"
               } w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-accent focus:border-transparent`}
               placeholder="Your name"
               value={username}
