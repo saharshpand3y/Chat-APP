@@ -8,7 +8,11 @@ import Message from "./models/Message.js";
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://chat-6qzjltjsw-saharshpand3ys-projects.vercel.app/",
+  })
+);
 app.use(express.json());
 
 app.get("/status", (req, res) => {
