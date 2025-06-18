@@ -3,7 +3,7 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "bun index.js",
+    "start": "bun index.js",
     "watch": "bun --watch index.js",
     "hot": "bun --hot index.js"
   },

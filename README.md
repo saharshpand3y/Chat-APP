@@ -10,7 +10,7 @@ This is a real-time chat application built with MongoDB, Express.js, React.js, a
 
 ## Prerequisites
 
-- Node.js and npm
+- Node.js and npm (or Bun)
 - MongoDB (local or cloud)
 
 ## Local Setup
@@ -22,17 +22,21 @@ This is a real-time chat application built with MongoDB, Express.js, React.js, a
 3. Create a `.env` file with the following:
 
      MONGODB_URI=mongodb://localhost:27017/chatdb
+
      PORT=5000
 
-4. Start the server: `node server.js`
+4. Start the server: `node index.js` or `npm start` (Change Script in package.json accordingly)
+
+The backend will run on ws://localhost:5000.
+Check Status of Backend with a curl request to http://localhost:5000/status
 
 ### Frontend
 
 1. Navigate to the frontend directory: `cd frontend`
 2. Install dependencies: `npm install`
-3. Start the React app: `npm start`
+3. Start the React app: `npm run dev`
 
-The frontend will run on http://localhost:3000.
+The frontend will run on http://localhost:5173.
 
 ## Deployment
 
@@ -47,7 +51,7 @@ Deploy the backend to a platform like Heroku or Render. Set the environment vari
 
 Deploy the frontend to Netlify or Vercel. Set the environment variable:
 
-- `REACT_APP_WS_URL`: The WebSocket URL of your deployed backend (e.g., `wss://your-backend-url`)
+- `VITE_WS_URL`: The WebSocket URL of your deployed backend (e.g., `wss://your-backend-url`)
 
 ## Architecture
 
@@ -66,3 +70,6 @@ Concurrency is handled by Node.js's event-driven, non-blocking I/O model. Each W
 
 The deployed frontend URL will be provided by the hosting platform (Netlify/Vercel). Open that URL in a browser to use the chat.
 
+## Testing
+
+You may Test the Application by Accessing [This Link](https://chat-app-beta-flax-83.vercel.app/)
